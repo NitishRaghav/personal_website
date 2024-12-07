@@ -1,6 +1,9 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Experience() {
+  const [selectedExp, setSelectedExp] = useState(null);
+
   const experiences = [
     {
       title: "AI Engineer",
@@ -21,48 +24,46 @@ export default function Experience() {
       ]
     }
   ];
-
   return (
-    <section 
-      id="experience" 
-      className="py-20 bg-dark-900 text-light-100"
+    <motion.section 
+      className="experience bg-olive-300 p-10"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
     >
-      <div className="container mx-auto px-4">
-        <motion.h2 
-          className="text-4xl font-bold mb-12 text-center text-purple-400"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Professional Experience
-        </motion.h2>
-        
-        <div className="max-w-3xl mx-auto space-y-8">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              className="bg-dark-800 p-6 rounded-lg shadow-lg border border-dark-700"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-2xl font-semibold text-purple-400 mb-2">
-                {exp.title}
-              </h3>
-              <p className="text-light-300 mb-3">
-                {exp.company} | {exp.period}
-              </p>
-              <ul className="list-disc list-inside text-light-200 space-y-2">
-                {exp.description.map((desc, descIndex) => (
-                  <li key={descIndex}>{desc}</li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
+      <h2 className="text-4xl font-bold mb-8 text-olive-900">Professional Experience</h2>
+      <div className="experience-list flex flex-wrap gap-4">
+        {experiences.map((exp, index) => (
+          <motion.div 
+            key={index}
+            className={`experience-item cursor-pointer p-4 rounded-lg \${selectedExp === index ? 'bg-accent-3' : 'bg-white'}`}
+            onClick={() => setSelectedExp(selectedExp === index ? null : index)}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+          >
+            <h3 className="text-2xl font-semibold text-olive-800">{exp.title}</h3>
+            <p className="text-olive-700">{exp.company} | {exp.period}</p>
+          </motion.div>
+        ))}
       </div>
-    </section>
+      <AnimatePresence>
+        {selectedExp !== null && (
+          <motion.div 
+            className="experience-details mt-8 bg-white p-6 rounded-lg shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h4 className="text-xl font-semibold mb-4 text-olive-800">{experiences[selectedExp].title} at {experiences[selectedExp].company}</h4>
+            <ul className="list-disc pl-5 text-olive-700">
+              {experiences[selectedExp].description.map((desc, index) => (
+                <li key={index} className="mb-2">{desc}</li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.section>
   );
 }

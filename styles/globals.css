@@ -6,6 +6,28 @@
 ::-webkit-scrollbar {
   width: 10px;
 }
+:root {
+  --olive-100: #F6F7F3;
+  --olive-200: #E8EBE0;
+  --olive-300: #D9DFC8;
+  --olive-400: #CAD3B0;
+  --olive-500: #BBC798;
+  --olive-600: #A3B375;
+  --olive-700: #8A9A52;
+  --olive-800: #71812F;
+  --olive-900: #58680C;
+  --accent-1: #FF6B6B;
+  --accent-2: #4ECDC4;
+  --accent-3: #FFA400;
+}
+
+
+body {
+  background-color: var(--olive-600);
+  color: var(--olive-900);
+ color: #561c1c;
+  font-family: 'Manrope', sans-serif;
+}
 
 ::-webkit-scrollbar-track {
   background: #1E1E1E;
@@ -26,11 +48,10 @@ html {
 }
 
 /* Global body styles */
-body {
-  background-color: #121212;
-  color: #FFFFFF;
-  font-family: 'Manrope', sans-serif;
-}
+/* body {
+  /* background-color: #121212; */
+ 
+
 
 /* Global link styles */
 a {
