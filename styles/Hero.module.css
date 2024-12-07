@@ -1,0 +1,37 @@
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1e1e1e;
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+  }
+  
+  .hero.fadeIn {
+    opacity: 1;
+  }
+  
+  .heroContent h1 {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+  
+  .heroContent p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .heroContent h1 {
+      font-size: 2.5rem;
+    }
+  
+    .heroContent p {
+      font-size: 1rem;
+    }
+  }
+  
+  

@@ -1,0 +1,32 @@
+.projects {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    background-color: #f4f4f4;
+  }
+  
+  .projectList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .projectItem {
+    flex-basis: calc(50% - 20px);
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    .projectList {
+      flex-direction: column;
+    }
+    
+    .projectItem {
+      flex-basis: 100%;
+    }
+  }
+  
