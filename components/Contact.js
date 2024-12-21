@@ -58,7 +58,7 @@ export default function Contact() {
           viewport={{ once: true }}
         >
           <p className="text-light-300 mb-8 text-lg">
-            I'm always open to discussing new projects, opportunities, or just having a chat. Feel free to reach out!
+            I&apos;m always open to discussing new projects, opportunities, or just having a chat. Feel free to reach out!
           </p>
           
           <div className="flex justify-center space-x-6 mb-8">
@@ -96,3 +96,4 @@ export default function Contact() {
     </section>
   );
 }
+
