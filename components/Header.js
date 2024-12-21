@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import { Sun, Moon, Menu } from 'lucide-react';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const menuItems = [
     { href: "#about", label: "About" },
@@ -32,9 +38,9 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed w-full z-50 bg-dark-800 shadow-lg">
+    <header className="fixed w-full z-50 bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-purple-400 hover:text-purple-300 transition-colors">
+        <Link href="/" className="text-2xl font-bold text-primary hover:text-primary/80 transition-colors">
           Nitish
         </Link>
 
@@ -42,9 +48,10 @@ export default function Header() {
         <div className="md:hidden">
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="text-purple-400 focus:outline-none"
+            className="text-foreground focus:outline-none"
+            aria-label="Toggle menu"
           >
-            {isOpen ? '✕' : '☰'}
+            <Menu />
           </button>
         </div>
 
@@ -63,7 +70,7 @@ export default function Header() {
               >
                 <Link 
                   href={item.href} 
-                  className="text-light-100 hover:text-purple-400 transition-colors font-medium"
+                  className="text-foreground hover:text-primary transition-colors font-medium"
                 >
                   {item.label}
                 </Link>
@@ -72,6 +79,17 @@ export default function Header() {
           </motion.ul>
         </nav>
 
+        {/* Theme Toggle */}
+        {mounted && (
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="p-2 rounded-full bg-secondary text-secondary-foreground"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </button>
+        )}
+
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
           {isOpen && (
@@ -79,7 +97,7 @@ export default function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-dark-900 z-40 md:hidden"
+              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden"
             >
               <motion.ul 
                 className="flex flex-col items-center justify-center h-full space-y-6"
@@ -94,7 +112,7 @@ export default function Header() {
                   >
                     <Link 
                       href={item.href} 
-                      className="text-2xl text-light-100 hover:text-purple-400 transition-colors"
+                      className="text-2xl text-foreground hover:text-primary transition-colors"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.label}
@@ -108,5 +126,4 @@ export default function Header() {
       </div>
     </header>
   );
-}
-  
+} 

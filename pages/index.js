@@ -1,3 +1,4 @@
+import { ThemeProvider } from 'next-themes';
 import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
@@ -20,27 +21,29 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-dark-900 text-light-100">
-      <Header />
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <Hero />
-        <motion.div variants={sectionVariants}>
-          <About />
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <div className="bg-background text-foreground min-h-screen">
+        <Header />
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <Hero />
+          <motion.div variants={sectionVariants}>
+            <About />
+          </motion.div>
+          <motion.div variants={sectionVariants}>
+            <Experience />
+          </motion.div>
+          <motion.div variants={sectionVariants}>
+            <Projects />
+          </motion.div>
+          <motion.div variants={sectionVariants}>
+            <Contact />
+          </motion.div>
         </motion.div>
-        <motion.div variants={sectionVariants}>
-          <Experience />
-        </motion.div>
-        <motion.div variants={sectionVariants}>
-          <Projects />
-        </motion.div>
-        <motion.div variants={sectionVariants}>
-          <Contact />
-        </motion.div>
-      </motion.div>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }

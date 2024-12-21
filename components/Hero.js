@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import coderGif from './coder.gif';
 
 export default function Hero() {
   return (
@@ -41,13 +42,14 @@ export default function Hero() {
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
         <Image 
-          src="/coder-animation.gif" 
-          alt="Animated Coder" 
-          width={500} 
-          height={500}
-          className="rounded-lg shadow-2xl"
-        />
+  src={coderGif} 
+  alt="Animated Coder" 
+  width={500} 
+  height={500}
+  className="rounded-lg shadow-2xl"
+/>
       </motion.div>
     </motion.section>
   );
 }
+
