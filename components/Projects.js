@@ -3,9 +3,9 @@ import { Code2, FileText, Building, Brain, GitMerge } from 'lucide-react';
 
 const projects = [
   {
-    title: "AI-Powered Document Extraction",
+    title: "AI-Powered Document Imformation Extraction",
     description: "Implemented OCR and LLM-based data extraction from various documents, enhancing information retrieval efficiency.",
-    technologies: ["Python", "OCR", "LLM", "NLP"],
+    technologies: ["Python", "OCR","RAG","Langchain", "LLM", "NLP"],
     icon: <FileText className="h-6 w-6" />
   },
   {
@@ -17,21 +17,27 @@ const projects = [
   {
     title: "Personalized Assessment Generator",
     description: "Utilized Gemini and OpenAI APIs to create dynamic, personalized assessments, enhancing learning experiences.",
-    technologies: ["Gemini API", "OpenAI API", "Python", "NLP"],
+    technologies: ["Gemini API", "OpenAI API", "Python",'FastAPI', "NLP"],
     icon: <Brain className="h-6 w-6" />
   },
   {
     title: "Comprehensive AI Platform",
     description: "Built a versatile AI platform incorporating multiple tools and functionalities, streamlining AI-driven processes.",
-    technologies: ["Python", "AWS Bedrock", "Machine Learning", "API Integration"],
+    technologies: ["Python", "AWS Bedrock", "Prompt Engineering","Mongo-DB","API Integration"],
     icon: <Code2 className="h-6 w-6" />
   },
   {
     title: "ALM Tool with Azure DevOps Integration",
     description: "Developed an Application Lifecycle Management tool integrated with Azure DevOps for efficient user story extraction and management.",
-    technologies: ["Azure DevOps", "Python", "API Integration", "ALM"],
+    technologies: ["Azure DevOps", "Python", "API Integration", "SSO"],
     icon: <GitMerge className="h-6 w-6" />
-  }
+  },
+  {
+    title: "Skin Analysis",
+    description: "Built a versatile AI platform that analyze the skin deeply. skin acne, dark spot, Black Head and wrinkles detection",
+    technologies: ["Python", "YOLO", "Machine Learning","Live Image rendering","DeepFace"],
+    icon: <Brain className="h-6 w-6" />
+  },
 ];
 
 export default function Projects() {
