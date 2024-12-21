@@ -5,7 +5,7 @@ export default function Contact() {
   const socialLinks = [
     { 
       name: 'LinkedIn', 
-      url: 'https://www.linkedin.com/in/nitish', 
+      url: 'https://www.linkedin.com/in/nitish-7a244a26a/', 
       icon: <Linkedin className="h-6 w-6" />
     },
     { 
