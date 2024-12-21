@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 
 export default function About() {
   const skills = [
-    "AI", "Machine Learning", "Python", "React", "Next.js",
-    "Computer Vision", "NLP", "Data Analysis", "AWS", "Azure"
+    "Python", "Data Analysis","Prompt Engineering", "Machine Learning","Deep Learning","Computer Vision","APIs","SSO", "React", "Next.js",
+     "NLP","RAG", "GenAI","LLMs","SLMs","Ollama", "AWS-BEDROCK", "Azure"
   ];
 
   return (
