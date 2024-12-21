@@ -24,7 +24,7 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          I'm Nitish, an AI & LLM engineer, full stack developer, and
+          I&apos;m Nitish, an AI & LLM engineer, full stack developer, and
           innovator with a passion for creating impactful solutions. Currently, I
           am working at Testingxperts as an AI engineer. I have also interned at
           9i Technologies, where I worked on Python-based projects.
@@ -33,3 +33,4 @@ export default function About() {
     </section>
   );
 }
+
