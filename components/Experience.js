@@ -1,68 +1,74 @@
+import React from 'react';
 import { motion } from 'framer-motion';
+import { Briefcase } from 'lucide-react';
+
+const experiences = [
+  {
+    title: "AI Engineer",
+    company: "Testingxperts",
+    period: "Current",
+    description: [
+      "Implemented OCR and LLM-based data extraction from various documents",
+      "Leveraged AI and computer vision to predict building dimensions",
+      "Used Gemini and OpenAI APIs to create personalized assessments",
+      "Built a comprehensive AI platform incorporating multiple tools and functionalities",
+      "Implemented an ALM tool integrating with Azure DevOps for user story extraction",
+      "Worked with AWS Bedrock for both streaming and non-streaming applications",
+      "Utilized Python for AI and machine learning projects",
+      "Developed skills in data manipulation, analysis, and visualization using libraries like Matplotlib"
+    ]
+  },
+  {
+    title: "AI Intern",
+    company: "9i Technologies",
+    period: "Previous",
+    description: [
+      "Gained practical experience in Python programming, AI, and machine learning",
+      "Collaborated with cross-functional teams to deliver innovative solutions",
+      "Developed proficiency in data manipulation, analysis, and visualization"
+    ]
+  }
+];
 
 export default function Experience() {
-  const experiences = [
-    {
-      title: "AI Engineer",
-      company: "Testingxperts",
-      period: "Current",
-      description: [
-        "Developing AI and LLM solutions",
-        "Implementing innovative technologies"
-      ]
-    },
-    {
-      title: "AI Intern",
-      company: "9i Technologies",
-      period: "Previous",
-      description: [
-        "Worked on Python-based projects",
-        "Gained hands-on experience in software development"
-      ]
-    }
-  ];
-
   return (
-    <section 
-      id="experience" 
-      className="py-20 bg-dark-900 text-light-100"
+    <motion.section 
+      className="experience bg-background py-20"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-4">
-        <motion.h2 
-          className="text-4xl font-bold mb-12 text-center text-purple-400"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Professional Experience
-        </motion.h2>
-        
-        <div className="max-w-3xl mx-auto space-y-8">
+        <h2 className="text-4xl font-bold mb-12 text-center text-primary">Professional Experience</h2>
+        <div className="experience-list space-y-12">
           {experiences.map((exp, index) => (
-            <motion.div
+            <motion.div 
               key={index}
-              className="bg-dark-800 p-6 rounded-lg shadow-lg border border-dark-700"
+              className="experience-item bg-card text-card-foreground p-8 rounded-lg shadow-lg relative overflow-hidden"
               initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
             >
-              <h3 className="text-2xl font-semibold text-purple-400 mb-2">
-                {exp.title}
-              </h3>
-              <p className="text-light-300 mb-3">
-                {exp.company} | {exp.period}
-              </p>
-              <ul className="list-disc list-inside text-light-200 space-y-2">
-                {exp.description.map((desc, descIndex) => (
-                  <li key={descIndex}>{desc}</li>
+              <div className="absolute top-0 left-0 w-2 h-full bg-primary"></div>
+              <div className="flex items-center mb-4">
+                <div className="bg-primary/10 p-3 rounded-full mr-4">
+                  <Briefcase className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold text-primary">{exp.title}</h3>
+                  <p className="text-muted-foreground">{exp.company} | {exp.period}</p>
+                </div>
+              </div>
+              <ul className="list-disc pl-6 text-muted-foreground space-y-2">
+                {exp.description.map((desc, i) => (
+                  <li key={i} className="text-sm">{desc}</li>
                 ))}
               </ul>
             </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
+
