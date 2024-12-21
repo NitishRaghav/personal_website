@@ -37,6 +37,22 @@ export default function Header() {
     }
   };
 
+  const handleScroll = (e, href) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      const headerOffset = 80; // Adjust this value based on your header height
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+    setIsOpen(false); // Close mobile menu after clicking
+  };
+
   return (
     <header className="fixed w-full z-50 bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -68,12 +84,13 @@ export default function Header() {
                 key={item.href}
                 variants={itemVariants}
               >
-                <Link 
-                  href={item.href} 
-                  className="text-foreground hover:text-primary transition-colors font-medium"
+                <a
+                  href={item.href}
+                  onClick={(e) => handleScroll(e, item.href)}
+                  className="text-foreground hover:text-primary transition-colors"
                 >
                   {item.label}
-                </Link>
+                </a>
               </motion.li>
             ))}
           </motion.ul>
@@ -83,24 +100,24 @@ export default function Header() {
         {mounted && (
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 rounded-full bg-secondary text-secondary-foreground"
-            aria-label="Toggle theme"
+            className="p-2 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+            aria-label="Toggle dark mode"
           >
             {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
         )}
 
-        {/* Mobile Menu Overlay */}
+        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden"
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute top-full left-0 right-0 bg-background border-b md:hidden"
             >
               <motion.ul 
-                className="flex flex-col items-center justify-center h-full space-y-6"
+                className="py-2 px-4"
                 variants={menuVariants}
                 initial="hidden"
                 animate="visible"
@@ -109,14 +126,15 @@ export default function Header() {
                   <motion.li 
                     key={item.href}
                     variants={itemVariants}
+                    className="mb-2"
                   >
-                    <Link 
-                      href={item.href} 
-                      className="text-2xl text-foreground hover:text-primary transition-colors"
-                      onClick={() => setIsOpen(false)}
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleScroll(e, item.href)}
+                      className="block py-2 text-foreground hover:text-primary transition-colors"
                     >
                       {item.label}
-                    </Link>
+                    </a>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -126,4 +144,5 @@ export default function Header() {
       </div>
     </header>
   );
-} 
+}
+

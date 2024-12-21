@@ -33,6 +33,7 @@ const experiences = [
 export default function Experience() {
   return (
     <motion.section 
+      id="experience"
       className="experience bg-background py-20"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
